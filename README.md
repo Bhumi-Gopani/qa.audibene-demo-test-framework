@@ -10,7 +10,7 @@ This project contains a full-stack automated testing setup using:
 - ✅ Pre-commit hooks for formatting and consistency
 
 ## 📁 Project Structure
-
+```
 ├── src/
 │ ├── test/
 │ │ ├── java/KarateTest.java # Entry point for Karate tests
@@ -25,7 +25,7 @@ This project contains a full-stack automated testing setup using:
 ├── run-all-in-docker.sh # Run all tests (with report auto-open)
 ├── pom.xml # Maven build file
 └── .pre-commit-config.yaml # Formatting, linting, hooks
-
+```
 ## 🚀 Quick Start
 
 ### 🔧 Prerequisites
@@ -68,7 +68,7 @@ This will:
 | Screenshots | `target/karate-reports/*.png` (on UI failures)       |
 
 ✅ Folder Structure of reporting
-
+```
 target/
 ├── cucumber-reports/
 │ ├── api/
@@ -83,7 +83,7 @@ target/
 ├── gatling/
 │ └── userapisimulation-20250520194503456/
 │ └── index.html
-
+```
 ### 🤖 CI: GitHub Actions
 
 All tests run automatically on every push or pull_request to main.
