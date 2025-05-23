@@ -1,0 +1,49 @@
+name: Run Karate Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  karate-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: 🔧 Grant execute permission to test scripts
+        run: chmod +x run-*-in-docker.sh
+
+      - name: 🧪 Run API tests
+        run: ./run-api-in-docker.sh
+
+      - name: 🧪 Run UI tests
+        run: ./run-ui-in-docker.sh
+
+      - name: 🧪 Run Performance tests
+        run: ./run-performance-in-docker.sh
+
+      - name: 📦 Upload Karate API Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: karate-api-report
+          path: target/cucumber-reports/api/cucumber-html-reports
+
+      - name: 📦 Upload Karate UI Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: karate-ui-report
+          path: target/cucumber-reports/ui/cucumber-html-reports
+
+      - name: 📦 Upload Gatling Performance Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: gatling-performance-report
+          path: target/gatling
